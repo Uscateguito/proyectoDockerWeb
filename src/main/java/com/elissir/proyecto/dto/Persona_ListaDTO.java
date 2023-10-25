@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CancionDTO {
+public class Persona_ListaDTO {
 
-    private Long id_cancion;
-    private String nombre;
-    private String artista;
-    private String album;
-    private String duracion;
-    private int numLikes;
+    private Long id_persona_lista;
+    private int like;
+    private PersonaDTO personaDTO;
+    private ListaDTO listaDTO;
 }
