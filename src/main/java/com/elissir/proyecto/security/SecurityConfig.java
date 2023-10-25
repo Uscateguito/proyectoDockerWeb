@@ -39,7 +39,7 @@ public class SecurityConfig {
                                 ).hasAuthority("PERSONA")
                                 .anyRequest().authenticated()
                 )
-//
+
                 .sessionManagement(sessionManagement ->
                         sessionManagement
 //                                No se crea una sesión para el usuario
