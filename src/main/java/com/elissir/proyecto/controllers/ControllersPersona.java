@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb.controllers;
+package com.elissir.proyecto.controllers;
 
 import com.elissir.proyecto.dto.PersonaDTO;
 import com.elissir.proyecto.dto.PersonaMapper;

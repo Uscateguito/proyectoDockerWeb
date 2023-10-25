@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb.dto;
+package com.elissir.proyecto.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ public class PersonaDTO {
 
     private String apellido;
 
-    private String correo_electronico;
+    private String correoElectronico;
 
 }
 

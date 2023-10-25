@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb.dto;
+package com.elissir.proyecto.dto;
 
 import com.elissir.proyecto.entidades.Cancion;
 import org.mapstruct.Mapper;

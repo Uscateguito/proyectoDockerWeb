@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb.entidades;
+package com.elissir.proyecto.entidades;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;

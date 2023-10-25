@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb.dto;
+package com.elissir.proyecto.dto;
 
 import com.elissir.proyecto.entidades.Persona;
 import org.mapstruct.Mapper;
@@ -13,7 +13,7 @@ public interface PersonaMapper {
     @Mapping(source = "id_persona", target = "id_persona")
     @Mapping(source = "nombre", target = "nombre")
     @Mapping(source = "apellido", target = "apellido")
-    @Mapping(source = "correo_electronico", target = "correo_electronico")
+    @Mapping(source = "correoElectronico", target = "correoElectronico")
     PersonaDTO personaToPersonaDTO(Persona persona);
 
 }

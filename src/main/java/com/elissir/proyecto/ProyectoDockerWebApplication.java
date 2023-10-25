@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb;
+package com.elissir.proyecto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

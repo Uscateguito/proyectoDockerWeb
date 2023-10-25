@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb.repository;
+package com.elissir.proyecto.repository;
 
 import com.elissir.proyecto.entidades.*;
 import org.springframework.data.jpa.repository.JpaRepository;

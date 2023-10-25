@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb.services;
+package com.elissir.proyecto.services;
 
 import com.elissir.proyecto.entidades.Persona;
 import com.elissir.proyecto.repository.PersonaRepository;
@@ -40,7 +40,7 @@ public class PersonaService {
             // La modifico y la devuelvo
             modificada.setNombre(persona.getNombre());
             modificada.setApellido(persona.getApellido());
-            modificada.setCorreo_electronico(persona.getCorreo_electronico());
+            modificada.setCorreoElectronico(persona.getCorreoElectronico());
             modificada.setContrasenia(persona.getContrasenia());
             return personaRepository.save(modificada);
         }

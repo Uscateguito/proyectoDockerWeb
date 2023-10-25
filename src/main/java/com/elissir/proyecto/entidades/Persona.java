@@ -1,18 +1,24 @@
-package com.elissir.proyectodockerweb.entidades;
+package com.elissir.proyecto.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString(exclude = {"listCanciones", "listGenero"})
 @Entity(name = "persona")
-public class Persona {
+public class Persona implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +30,7 @@ public class Persona {
 
     private String contrasenia;
 
-    private String correo_electronico;
+    private String correoElectronico;
 
     @JsonIgnore
     @OneToMany(mappedBy = "persona")
@@ -40,7 +46,7 @@ public class Persona {
         this.nombre = nombre;
         this.apellido = apellido;
         setContrasenia(contrasenia);
-        this.correo_electronico = correo_electronico;
+        this.correoElectronico = correo_electronico;
     }
 
     public void setContrasenia(String contrasenia) {
@@ -53,5 +59,40 @@ public class Persona {
 
     public void agregarLista(Persona_Lista lista) {
         listGenero.add(lista);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getPassword() {
+        return this.contrasenia;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.correoElectronico;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

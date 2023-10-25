@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb.controllers;
+package com.elissir.proyecto.controllers;
 
 import com.elissir.proyecto.entidades.*;
 import com.elissir.proyecto.services.*;

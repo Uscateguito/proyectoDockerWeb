@@ -1,4 +1,4 @@
-package com.elissir.proyecto.config;
+package com.elissir.proyecto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthResponse {
-    String Token;
+    String token;
 }

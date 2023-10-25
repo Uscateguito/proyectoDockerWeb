@@ -1,15 +1,17 @@
-package com.elissir.proyectodockerweb.entidades;
+package com.elissir.proyecto.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
+@ToString(exclude = {"listPersonas", "lista"})
 @Entity(name = "cancion")
 public class Cancion {
 

@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb.services;
+package com.elissir.proyecto.services;
 
 import com.elissir.proyecto.entidades.*;
 import com.elissir.proyecto.repository.ListaRepository;

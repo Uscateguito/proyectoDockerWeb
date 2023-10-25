@@ -1,17 +1,16 @@
-package com.elissir.proyecto.config;
+package com.elissir.proyecto.security;
 
 import com.elissir.proyecto.repository.AdminRepository;
 import com.elissir.proyecto.repository.PersonaRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -20,10 +19,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 // y el passwordEncoder
 @Configuration
 @RequiredArgsConstructor
-public class AplicationConfig {
+public class ApplicationConfig {
 
     private final PersonaRepository personaRepository;
     private final AdminRepository adminRepository;
+    Logger logger = org.slf4j.LoggerFactory.getLogger(ApplicationConfig.class);
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
@@ -46,7 +46,16 @@ public class AplicationConfig {
 
     @Bean
     protected UserDetailsService userDetailsService() {
-        return username -> adminRepository.findFirstByNombre(username);
+        return username -> {
+//            logger.warn("este es el username que llega: " + username);
+            if (personaRepository.findFirstByCorreoElectronico(username) != null) {
+                return personaRepository.findFirstByCorreoElectronico(username);
+            } else if (adminRepository.findFirstByNombre(username) != null) {
+                return adminRepository.findFirstByNombre(username);
+            } else {
+                throw new RuntimeException("Usuario no encontrado");
+            }
+        };
     }
 
 

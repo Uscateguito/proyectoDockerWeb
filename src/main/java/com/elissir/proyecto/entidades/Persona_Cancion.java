@@ -1,4 +1,4 @@
-package com.elissir.proyectodockerweb.entidades;
+package com.elissir.proyecto.entidades;
 
 import jakarta.persistence.*;
 import lombok.Data;

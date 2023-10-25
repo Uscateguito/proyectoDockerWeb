@@ -14,9 +14,13 @@ services:
         - java_db
   java_db:
     container_name: java_db
-    image: mysql:8.0.25
+    image: mysql:8.1.0
+    volumes:
+      - myapp:/var/lib/mysql
     ports:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=secret
-
+      - MYSQL_DATABASE=musiclist
+volumes:
+    myapp:
