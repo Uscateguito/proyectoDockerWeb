@@ -31,7 +31,7 @@ public class SecurityConfig {
 //                       Permitimos que se acceda a la ruta /auth/** sin autenticación (endPoints Públicos)
                                 .requestMatchers("/auth/**").permitAll()
 //                        Para cualquier otro request, se requiere autenticación (endPoints Privados)
-                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                                .requestMatchers("/admin/**", "/relaciones/genero/*/cancion/*").hasAuthority("ADMIN")
                                 .requestMatchers("/persona/**").hasAuthority("PERSONA")
                                 .anyRequest().authenticated()
                 )
