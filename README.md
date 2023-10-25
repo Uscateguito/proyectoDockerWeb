@@ -38,8 +38,9 @@ Por ejemplo, cuando un usuario normal da "like" a una canción en una lista de r
 ## Librerías y Frameworks Utilizados:
 
 - mapStruct
-- Spring Boot
+- Spring Boot Security
 - Lombok
+- JWTS: io.jsonwebtoken
 ___
 
 # Authors 
