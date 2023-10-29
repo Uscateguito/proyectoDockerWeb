@@ -10,6 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -28,6 +31,8 @@ public class SecurityConfig {
         return http
 //                Autenticación basada en token csrf (Cross-Site Request Forgery) no necesario, porque vamos a utilizar otro tipo de seguridad
                 .csrf(csrf -> csrf.disable())
+                .cors() // Habilitar la configuración CORS
+                .and()
                 // Utilizamos un lambda para agregar más de una configuración a las rutas públicas y privadas
                 .authorizeHttpRequests(authorize -> authorize
 //                       Permitimos que se acceda a la ruta /auth/** sin autenticación (endPoints Públicos)
@@ -58,6 +63,18 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
 
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("*"); // Permitir solicitudes desde cualquier origen
+        configuration.addAllowedMethod("*"); // Permitir cualquier método (GET, POST, PUT, DELETE, etc.)
+        configuration.addAllowedHeader("*"); // Permitir cualquier encabezado
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
 
