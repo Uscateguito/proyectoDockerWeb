@@ -23,6 +23,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        Configuración de la cadena de filtros
 
+//        Esto sucede cuando recibo un http request
+
         return http
 //                Autenticación basada en token csrf (Cross-Site Request Forgery) no necesario, porque vamos a utilizar otro tipo de seguridad
                 .csrf(csrf -> csrf.disable())
@@ -39,14 +41,20 @@ public class SecurityConfig {
                                 ).hasAuthority("PERSONA")
                                 .anyRequest().authenticated()
                 )
-//
                 .sessionManagement(sessionManagement ->
                         sessionManagement
 //                                No se crea una sesión para el usuario
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                Agregamos el filtro de autenticación
+                // El proveedor de autenticación es el encargado de validar las credenciales del usuario
+                // y de devolver un objeto de tipo Authentication si la autenticación fue exitosa.
+                // Este objeto contiene la información del usuario autenticado y los roles que tiene asignados.
+                // ¿Hace esto sólo con el token?
+                // Sí, el token es el que contiene la información del usuario autenticado y los roles que tiene asignados.
+                // ¿Entonces para hacer esta autentiación no es necesaria una base de datos?
+                // No, porque el token contiene la información del usuario autenticado y los roles que tiene asignados.
                 .authenticationProvider(authProvider)
 //                Agregamos el filtro de autorización
+//                Aquí simplemente comprobamos que el token enviado en el header sea válido
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
 

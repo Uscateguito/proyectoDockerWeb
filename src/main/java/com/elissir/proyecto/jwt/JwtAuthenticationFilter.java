@@ -26,7 +26,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     //    Authorization es el espacio en el que se encuentra el JWT que se debe confirmar y desencriptar
     private final String HEADER = "Authorization";
     private final String PREFIX = "Bearer ";
-    private final String SECRET = "eunelissir";
 
     private final JwtService jwtService;
 
@@ -50,7 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-
+//        No toca la base de datos, hace la validación del token
         username= jwtService.getUserNameFromToken(token);
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -83,7 +82,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         }
         String jwtToken = request.getHeader(HEADER).replace(PREFIX, "");
-
         return jwtToken;
     }
 }

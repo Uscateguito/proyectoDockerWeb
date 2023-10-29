@@ -26,43 +26,43 @@ public class JwtService {
 
     private final Logger logger = org.slf4j.LoggerFactory.getLogger(JwtService.class);
 
-    public String getTokenAdmin(Admin admin) {
-        return  getTokenAdmin(new HashMap<>(), admin);
-    }
-
-    private String getTokenAdmin(HashMap<String, Object> extraClaims, Admin admin) {
-        return Jwts
-                .builder()
-                .setClaims(extraClaims)
-                .setSubject(admin.getNombre())
-                // Fecha de inicio del permiso del token
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                // Fecha final del permiso del token
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-//                Revisar la key con su propio método
-                .signWith(getKey(), SignatureAlgorithm.HS256)
-                .compact();
-
-    }
-
-    public String getTokenPersona(Persona persona){
-        return  getTokenPersona(new HashMap<>(), persona);
-
-    }
-
-    private String getTokenPersona(HashMap<String,Object> extraClaims, Persona persona) {
-        return Jwts
-                .builder()
-                .setClaims(extraClaims)
-                .setSubject(persona.getCorreoElectronico())
-                // Fecha de inicio del permiso del token
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                // Fecha final del permiso del token
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-//                Revisar la key con su propio método
-                .signWith(getKey(), SignatureAlgorithm.HS256)
-                .compact();
-    }
+//    public String getTokenAdmin(Admin admin) {
+//        return  getTokenAdmin(new HashMap<>(), admin);
+//    }
+//
+//    private String getTokenAdmin(HashMap<String, Object> extraClaims, Admin admin) {
+//        return Jwts
+//                .builder()
+//                .setClaims(extraClaims)
+//                .setSubject(admin.getNombre())
+//                // Fecha de inicio del permiso del token
+//                .setIssuedAt(new Date(System.currentTimeMillis()))
+//                // Fecha final del permiso del token
+//                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+////                Revisar la key con su propio método
+//                .signWith(getKey(), SignatureAlgorithm.HS256)
+//                .compact();
+//
+//    }
+//
+//    public String getTokenPersona(Persona persona){
+//        return  getTokenPersona(new HashMap<>(), persona);
+//
+//    }
+//
+//    private String getTokenPersona(HashMap<String,Object> extraClaims, Persona persona) {
+//        return Jwts
+//                .builder()
+//                .setClaims(extraClaims)
+//                .setSubject(persona.getCorreoElectronico())
+//                // Fecha de inicio del permiso del token
+//                .setIssuedAt(new Date(System.currentTimeMillis()))
+//                // Fecha final del permiso del token
+//                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+////                Revisar la key con su propio método
+//                .signWith(getKey(), SignatureAlgorithm.HS256)
+//                .compact();
+//    }
 
     private Key getKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
