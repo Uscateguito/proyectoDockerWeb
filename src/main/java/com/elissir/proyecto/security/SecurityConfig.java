@@ -34,14 +34,14 @@ public class SecurityConfig {
                 // Utilizamos un lambda para agregar más de una configuración a las rutas públicas y privadas
                 .authorizeHttpRequests(authorize -> authorize
 //                       Permitimos que se acceda a la ruta /auth/** sin autenticación (endPoints Públicos)
-                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/**").permitAll()
 //                        Para cualquier otro request, se requiere autenticación (endPoints Privados)
-                                .requestMatchers("/admin/**", "/relaciones/genero/*/cancion/*"
-                                ).hasAuthority("ADMIN")
-                                .requestMatchers("/persona/**, " ,
-                                        "/relaciones/persona/*/cancion/*",
-                                        "/relaciones/persona/*/genero/*"
-                                ).hasAuthority("PERSONA")
+//                                .requestMatchers("/admin/**", "/relaciones/genero/*/cancion/*"
+//                                ).hasAuthority("ADMIN")
+//                                .requestMatchers("/persona/**, " ,
+//                                        "/relaciones/persona/*/cancion/*",
+//                                        "/relaciones/persona/*/genero/*"
+//                                ).hasAuthority("PERSONA")
                                 .anyRequest().authenticated()
                 )
 //

@@ -15,7 +15,7 @@ public class RegisterRequest {
     private String apellido;
     private String correo_electronico;
     private String password;
-    private Boolean esAdmin;
+    private int esAdmin;
 
 //     Crea los atributos en formato json con un ejemplo
 //     {

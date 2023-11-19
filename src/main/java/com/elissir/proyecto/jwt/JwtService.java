@@ -27,7 +27,7 @@ public class JwtService {
     private final Logger logger = org.slf4j.LoggerFactory.getLogger(JwtService.class);
 
     public String getTokenAdmin(Admin admin) {
-        return  getTokenAdmin(new HashMap<>(), admin);
+        return getTokenAdmin(new HashMap<>(), admin);
     }
 
     private String getTokenAdmin(HashMap<String, Object> extraClaims, Admin admin) {
@@ -45,16 +45,16 @@ public class JwtService {
 
     }
 
-    public String getTokenPersona(Persona persona){
-        return  getTokenPersona(new HashMap<>(), persona);
+    public String getTokenPersona(Persona persona) {
+        return getTokenPersona(new HashMap<>(), persona);
 
     }
 
-    private String getTokenPersona(HashMap<String,Object> extraClaims, Persona persona) {
+    private String getTokenPersona(HashMap<String, Object> extraClaims, Persona persona) {
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
-                .setSubject(persona.getCorreoElectronico())
+                .setSubject(persona.getNombre())
                 // Fecha de inicio del permiso del token
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 // Fecha final del permiso del token
@@ -97,8 +97,7 @@ public class JwtService {
         return getClaim(token, Claims::getExpiration);
     }
 
-    private Boolean isTokenExpired(String token)
-    {
+    private Boolean isTokenExpired(String token) {
         return getExpiDateFromToken(token).before(new Date());
     }
 }

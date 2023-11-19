@@ -48,8 +48,8 @@ public class ApplicationConfig {
     protected UserDetailsService userDetailsService() {
         return username -> {
 //            logger.warn("este es el username que llega: " + username);
-            if (personaRepository.findFirstByCorreoElectronico(username) != null) {
-                return personaRepository.findFirstByCorreoElectronico(username);
+            if (personaRepository.findFirstByNombre(username) != null) {
+                return personaRepository.findFirstByNombre(username);
             } else if (adminRepository.findFirstByNombre(username) != null) {
                 return adminRepository.findFirstByNombre(username);
             } else {

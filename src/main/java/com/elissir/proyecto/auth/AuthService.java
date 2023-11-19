@@ -26,7 +26,7 @@ public class AuthService {
     private final JwtService jwtService;
     //    El autentication manager sirve para validar el usuario y contraseña
     private final AuthenticationManager authenticationManager;
-//    Logger logger = org.slf4j.LoggerFactory.getLogger(AuthService.class);
+    Logger logger = org.slf4j.LoggerFactory.getLogger(AuthService.class);
 
 
     public AuthResponse login(LoginRequest request) {
@@ -34,15 +34,17 @@ public class AuthService {
 //        logger.warn("aquí toy");
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getNombre(), request.getPassword()));
 
-        if (request.getEsAdmin()) {
+        if (request.getEsAdmin() == 1) {
 
             Admin admin = adminRepository.findFirstByNombre(request.getNombre());
+            logger.warn("este es el admin que llega: " + admin.toString());
             String token = jwtService.getTokenAdmin(admin);
             return AuthResponse.builder().token(token).build();
 
         } else {
 
-            Persona persona = personaRepository.findFirstByCorreoElectronico(request.getNombre());
+            Persona persona = personaRepository.findFirstByNombre(request.getNombre());
+            logger.warn("este es el persona que llega: " + persona.toString());
             String token = jwtService.getTokenPersona(persona);
             return AuthResponse.builder().token(token).build();
 
@@ -51,13 +53,14 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request) {
 
-        if (request.getEsAdmin()) {
+        if (request.getEsAdmin() == 1) {
             // Crear usuario admin
             Admin admin = Admin.builder()
                     .nombre(request.getNombre())
                     .contrasenia(passwordEncoder.encode(request.getPassword()))
                     .build();
             adminRepository.save(admin);
+            logger.warn("este es el admin que se registra: " + admin.toString());
 
             return AuthResponse.builder()
                     .token(jwtService.getTokenAdmin(admin))
@@ -72,6 +75,7 @@ public class AuthService {
                     .contrasenia(passwordEncoder.encode(request.getPassword()))
                     .build();
             personaRepository.save(persona);
+            logger.warn("este es el persona que se registra: " + persona.toString());
 
             return AuthResponse.builder().token(jwtService.getTokenPersona(persona)).build();
         }
