@@ -1,7 +1,7 @@
 package com.elissir.proyecto.services;
 
 import com.elissir.proyecto.entidades.Persona;
-import com.elissir.proyecto.repository.PersonaRepository;
+import com.elissir.proyecto.repositoryJPA.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

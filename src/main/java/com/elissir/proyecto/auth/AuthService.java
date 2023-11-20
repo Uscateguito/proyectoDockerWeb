@@ -3,8 +3,8 @@ package com.elissir.proyecto.auth;
 import com.elissir.proyecto.entidades.Admin;
 import com.elissir.proyecto.entidades.Persona;
 import com.elissir.proyecto.jwt.JwtService;
-import com.elissir.proyecto.repository.AdminRepository;
-import com.elissir.proyecto.repository.PersonaRepository;
+import com.elissir.proyecto.repositoryJPA.AdminRepository;
+import com.elissir.proyecto.repositoryJPA.PersonaRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,14 +37,14 @@ public class AuthService {
         if (request.getEsAdmin() == 1) {
 
             Admin admin = adminRepository.findFirstByNombre(request.getNombre());
-            logger.warn("este es el admin que llega: " + admin.toString());
+//            logger.warn("este es el admin que llega: " + admin.toString());
             String token = jwtService.getTokenAdmin(admin);
             return AuthResponse.builder().token(token).build();
 
         } else {
 
             Persona persona = personaRepository.findFirstByNombre(request.getNombre());
-            logger.warn("este es el persona que llega: " + persona.toString());
+//            logger.warn("este es el persona que llega: " + persona.toString());
             String token = jwtService.getTokenPersona(persona);
             return AuthResponse.builder().token(token).build();
 

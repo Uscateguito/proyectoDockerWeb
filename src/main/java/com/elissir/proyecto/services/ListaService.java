@@ -1,7 +1,7 @@
 package com.elissir.proyecto.services;
 
 import com.elissir.proyecto.entidades.Lista;
-import com.elissir.proyecto.repository.ListaRepository;
+import com.elissir.proyecto.repositoryJPA.ListaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

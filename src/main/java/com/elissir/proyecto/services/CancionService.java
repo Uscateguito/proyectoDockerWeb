@@ -1,7 +1,7 @@
 package com.elissir.proyecto.services;
 
 import com.elissir.proyecto.entidades.Cancion;
-import com.elissir.proyecto.repository.CancionRepository;
+import com.elissir.proyecto.repositoryJPA.CancionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

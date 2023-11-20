@@ -1,7 +1,7 @@
 package com.elissir.proyecto.security;
 
-import com.elissir.proyecto.repository.AdminRepository;
-import com.elissir.proyecto.repository.PersonaRepository;
+import com.elissir.proyecto.repositoryJPA.AdminRepository;
+import com.elissir.proyecto.repositoryJPA.PersonaRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.springframework.context.annotation.Bean;
