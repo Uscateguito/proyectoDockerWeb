@@ -73,7 +73,7 @@ public class Persona implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.correoElectronico;
+        return this.nombre;
     }
 
     @Override
